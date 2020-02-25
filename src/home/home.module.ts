@@ -1,12 +1,11 @@
-import { Module, HttpModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { HomeController } from './home.controller';
 import { HomeService } from './home.service';
+import { MyHttpModule } from '../common/module/http/http.module';
 
 @Module({
-  imports: [HttpModule.register({
-    baseURL: 'https://www.xiaohongshu.com',
-  })],
+  imports: [MyHttpModule],
   controllers: [HomeController],
   providers: [HomeService],
 })
-export class HomeModule {};
+export class HomeModule {}

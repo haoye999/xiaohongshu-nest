@@ -1,11 +1,10 @@
-import { Module, HttpModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { NoteController } from './note.controller';
 import { NoteService } from './note.service';
+import { MyHttpModule } from '../common/module/http/http.module';
 
 @Module({
-  imports: [HttpModule.register({
-    baseURL: 'https://www.xiaohongshu.com',
-  })],
+  imports: [MyHttpModule],
   controllers: [NoteController],
   providers: [NoteService],
 })
