@@ -1,4 +1,4 @@
-import { IsNumberString, IsOptional } from 'class-validator';
+import { IsNumberString, IsString, IsOptional } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CommentQueryDto {
@@ -7,7 +7,7 @@ export class CommentQueryDto {
   @IsOptional()
   page_size: number;
 
-  @IsNumberString()
+  @IsString()
   @ApiPropertyOptional()
   @IsOptional()
   end_id: string;

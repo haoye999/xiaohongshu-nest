@@ -13,9 +13,6 @@ export class HomeService {
       url,
       method: 'GET' as Method,
       params: query,
-      headers: {
-        'x-sign': generateXSign(url, query),
-      },
     };
 
     return this.httpService.request(config);

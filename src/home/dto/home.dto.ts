@@ -6,16 +6,12 @@ export class HomeFeedQueryDto {
   @IsString()
   oid: string;
 
-  @ApiPropertyOptional({
-    default: 1,
-  })
+  @ApiPropertyOptional()
   @IsOptional()
   @IsNumberString()
   page: number;
 
-  @ApiPropertyOptional({
-    default: 10,
-  })
+  @ApiPropertyOptional()
   @IsOptional()
   @IsNumberString()
   pageSize: number;
