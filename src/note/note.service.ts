@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { MyHttpService } from '../common/module/http/http.service';
-import { CommentQueryDto } from './dto/comment.dto';
+import { CommentQueryDto, RelateQueryDto } from './dto/comment.dto';
+import { generateXSign } from 'src/common/utils';
 
 @Injectable()
 export class NoteService {
@@ -25,6 +26,18 @@ export class NoteService {
       headers: {
         Referer:
           'https://servicewechat.com/wxffc08ac7df482a27/315/page-frame.html',
+      },
+    });
+  }
+
+  getRelated(id: string, params: RelateQueryDto) {
+    const url = `/fe_api/burdock/v2/note/${id}/related`;
+    return this.httpService.request({
+      method: 'GET',
+      url,
+      params,
+      headers: {
+        'x-sign': generateXSign(url, params),
       },
     });
   }

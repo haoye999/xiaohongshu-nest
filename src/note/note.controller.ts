@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { NoteService } from './note.service';
-import { CommentQueryDto } from './dto/comment.dto';
+import { CommentQueryDto, RelateQueryDto } from './dto/comment.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('api/note')
@@ -18,6 +18,13 @@ export class NoteController {
   @ApiTags('note')
   async comment(@Param('id') id: string, @Query() query: CommentQueryDto) {
     const { data } = await this.noteService.getComment(id, query);
+    return data;
+  }
+
+  @Get(':id/related')
+  @ApiTags('note')
+  async related(@Param('id') id: string, @Query() query: RelateQueryDto) {
+    const { data } = await this.noteService.getRelated(id, query);
     return data;
   }
 }
