@@ -15,7 +15,7 @@ export class HomeController {
   }
 
   @Get('homefeed/categories')
-  @ApiTags('note')
+  @ApiTags('home')
   async categories() {
     const { data } = await this.homeService.getCategories();
     return data;
