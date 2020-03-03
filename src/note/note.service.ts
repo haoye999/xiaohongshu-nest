@@ -3,17 +3,21 @@ import { AxiosResponse } from 'axios';
 import { MyHttpService } from '../common/module/http/http.service';
 import { CommentQueryDto, RelateQueryDto } from './dto/comment.dto';
 import { generateXSign } from 'src/common/utils';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class NoteService {
-  constructor(private readonly httpService: MyHttpService) {}
+  constructor(
+    private readonly httpService: MyHttpService,
+    private readonly configService: ConfigService,
+  ) {}
 
   getNode(id: string): Promise<AxiosResponse> {
     return this.httpService.request({
       method: 'GET',
       url: `/wx_mp_api/sns/v1/note/${id}/single_feed`,
       headers: {
-        authorization: 'f38d4bc0-18c7-4595-80ba-d70313c0045f',
+        authorization: this.configService.get<string>('authorization'),
       },
     });
   }

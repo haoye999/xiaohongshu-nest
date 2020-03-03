@@ -9,10 +9,5 @@ export class HomeFeedQueryDto {
   @ApiPropertyOptional()
   @IsOptional()
   @IsNumberString()
-  page: number;
-
-  @ApiPropertyOptional()
-  @IsOptional()
-  @IsNumberString()
-  pageSize: number;
+  cursor_score: number;
 }

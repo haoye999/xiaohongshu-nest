@@ -13,4 +13,11 @@ export class HomeController {
     const { data } = await this.homeService.getHomeFeed(query);
     return data;
   }
+
+  @Get('homefeed/categories')
+  @ApiTags('note')
+  async categories() {
+    const { data } = await this.homeService.getCategories();
+    return data;
+  }
 }

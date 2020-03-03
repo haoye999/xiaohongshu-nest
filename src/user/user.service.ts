@@ -3,10 +3,14 @@ import { AxiosResponse } from 'axios';
 import { generateXSign } from '../common/utils';
 import { MyHttpService } from '../common/module/http/http.service';
 import { UserNoteDto, UserCollectDto } from './dto/user.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly httpService: MyHttpService) {}
+  constructor(
+    private readonly httpService: MyHttpService,
+    private readonly configService: ConfigService,
+  ) {}
 
   getUser(id): Promise<AxiosResponse> {
     const url = `/fe_api/burdock/v1/user/${id}`;
@@ -25,7 +29,7 @@ export class UserService {
       method: 'GET',
       url,
       headers: {
-        authorization: 'f38d4bc0-18c7-4595-80ba-d70313c0045f',
+        authorization: this.configService.get<string>('authorization'),
       },
       params,
     });
@@ -37,7 +41,7 @@ export class UserService {
       method: 'GET',
       url,
       headers: {
-        authorization: 'f38d4bc0-18c7-4595-80ba-d70313c0045f',
+        authorization: this.configService.get<string>('authorization'),
       },
       params,
     });
