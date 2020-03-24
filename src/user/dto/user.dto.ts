@@ -22,5 +22,5 @@ export class UserCollectDto {
   @IsString()
   @ApiPropertyOptional()
   @IsOptional()
-  bottom_start: string;
+  start: string;
 }

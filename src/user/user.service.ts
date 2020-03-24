@@ -24,24 +24,24 @@ export class UserService {
   }
 
   getUserNote(id: string, params: UserNoteDto): Promise<AxiosResponse> {
-    const url = `/wx_mp_api/sns/v1/note/user/${id}`;
+    const url = `/fe_api/burdock/weixin/v2/user/${id}/notes`;
     return this.httpService.request({
       method: 'GET',
       url,
       headers: {
-        authorization: this.configService.get<string>('authorization'),
+        'x-sign': generateXSign(url, params),
       },
       params,
     });
   }
 
   getUserCollect(id: string, params: UserCollectDto): Promise<AxiosResponse> {
-    const url = `/wx_mp_api/sns/v1/note/${id}/faved`;
+    const url = `/fe_api/burdock/weixin/v2/user/${id}/collectedNotes`;
     return this.httpService.request({
       method: 'GET',
       url,
       headers: {
-        authorization: this.configService.get<string>('authorization'),
+        'x-sign': generateXSign(url, params),
       },
       params,
     });
