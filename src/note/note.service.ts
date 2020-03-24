@@ -13,11 +13,12 @@ export class NoteService {
   ) {}
 
   getNode(id: string): Promise<AxiosResponse> {
+    const url = `/fe_api/burdock/weixin/v2/note/${id}/single_feed`;
     return this.httpService.request({
       method: 'GET',
-      url: `/wx_mp_api/sns/v1/note/${id}/single_feed`,
+      url,
       headers: {
-        authorization: this.configService.get<string>('authorization'),
+        'x-sign': generateXSign(url),
       },
     });
   }
