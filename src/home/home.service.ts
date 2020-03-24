@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { AxiosResponse, Method } from 'axios';
 import { MyHttpService } from '../common/module/http/http.service';
 import { ConfigService } from '@nestjs/config';
+import { generateXSign } from 'src/common/utils';
 
 @Injectable()
 export class HomeService {
@@ -11,13 +12,17 @@ export class HomeService {
   ) {}
 
   getHomeFeed(query): Promise<AxiosResponse> {
-    const url = '/wx_mp_api/sns/v1/homefeed';
+    const url = '/fe_api/burdock/weixin/v2/homefeed/personalNotes';
+    const params = {
+      ...query,
+      sid: this.configService.get<string>('sid'),
+    };
     const config = {
       url,
       method: 'GET' as Method,
-      params: {
-        ...query,
-        sid: this.configService.get<string>('sid'),
+      params,
+      headers: {
+        'x-sign': generateXSign(url, params),
       },
     };
 

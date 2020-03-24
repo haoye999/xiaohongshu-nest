@@ -1,13 +1,16 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class HomeFeedQueryDto {
   @ApiProperty()
   @IsString()
-  oid: string;
+  category: string;
 
   @ApiPropertyOptional()
   @IsString()
-  @IsOptional()
-  cursor_score: number;
+  page: number;
+
+  @ApiPropertyOptional()
+  @IsString()
+  pageSize: number;
 }

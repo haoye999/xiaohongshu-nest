@@ -7,12 +7,14 @@ export class MyHttpService {
 
   async request(config: AxiosRequestConfig) {
     try {
-      return await this.httpService.request(config).toPromise();
+      const result = await this.httpService.request(config).toPromise();
+      return result;
     } catch (error) {
       const {
         response: { status, statusText },
         message,
       } = error;
+      console.log(error);
       throw new HttpException(
         {
           status: status,
