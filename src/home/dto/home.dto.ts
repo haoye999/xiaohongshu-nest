@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsString, IsNumberString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class HomeFeedQueryDto {
@@ -6,9 +6,9 @@ export class HomeFeedQueryDto {
   @IsString()
   category: string;
 
-  @IsString()
+  @IsNumberString()
   page: number;
 
-  @IsString()
+  @IsNumberString()
   pageSize: number;
 }
