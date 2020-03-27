@@ -36,7 +36,7 @@ export class NoteService {
   }
 
   getRelated(id: string, params: RelateQueryDto) {
-    const url = `/fe_api/burdock/v2/note/${id}/related`;
+    const url = `/fe_api/burdock/weixin/v2/note/${id}/related`;
     return this.httpService.request({
       method: 'GET',
       url,
